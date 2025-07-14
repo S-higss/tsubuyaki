@@ -30,4 +30,12 @@ public class TsubuyakiService {
         found.forEach(list::add);
         return list;
     }
+    // キーワードに基づいてつぶやきを検索
+    public List<Tsubuyaki> searchTsubuyaki(String keyword) {
+        if (keyword == null || keyword.isEmpty()) {
+            return getAllTsubuyaki(); // キーワードが空なら全てのつぶやきを返す
+        }
+        // キーワードを含むつぶやきを検索
+        return repo.findByCommentContainingIgnoreCase(keyword);
+    }
 }
